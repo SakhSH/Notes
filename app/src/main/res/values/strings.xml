@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Notes</string>
+
+    <string name="on_back_pressed_text">Press back again to exit</string>
+    <string name="title_hint">Title:</string>
+    <string name="content_hint">Content:</string>
+    <string name="save_btn">save</string>
+    <string name="error_input_title">Invalid title</string>
+    <string name="error_input_content">Invalid content</string>
+</resources>
