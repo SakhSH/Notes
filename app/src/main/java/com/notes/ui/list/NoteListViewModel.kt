@@ -20,13 +20,13 @@ class NoteListViewModel @Inject constructor(
     val isNavigateToNoteCreation: LiveData<NoteNavigationAction> = _isNavigateToNoteCreation
 
     val getList by lazy {
-        getAllItemsUseCase.invoke()
+        getAllItemsUseCase()
     }
 
     fun deleteNoteItem(noteItemId: Long) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                deleteNoteItemUseCase.invoke(noteItemId)
+                deleteNoteItemUseCase(noteItemId)
             }
         }
     }

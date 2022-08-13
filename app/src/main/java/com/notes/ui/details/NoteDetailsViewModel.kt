@@ -57,14 +57,13 @@ class NoteDetailsViewModel @Inject constructor(
                     LocalDateTime.now()
                 )
                 val newNote = Note(
-                    id = UNDEFINED_ID,
                     title = title,
                     content = content,
                     createdAt = LocalDateTimeConverter().stringToLocalDateTime(dataTime),
                     modifiedAt = LocalDateTimeConverter().stringToLocalDateTime(dataTime)
                 )
                 insertItemUseCase(newNote)
-                finishWork()
+                navigateToNoteListFragment()
             }
         }
     }
@@ -84,7 +83,7 @@ class NoteDetailsViewModel @Inject constructor(
                     modifiedAt = LocalDateTimeConverter().stringToLocalDateTime(dataTime)
                 )
                 insertItemUseCase(newNote)
-                finishWork()
+                navigateToNoteListFragment()
             }
         }
     }
@@ -114,15 +113,11 @@ class NoteDetailsViewModel @Inject constructor(
         _errorInputContent.value = false
     }
 
-    private fun finishWork() {
+    private fun navigateToNoteListFragment() {
         _isFinished.value = true
     }
 
-    fun finishWorkSuccess() {
+    fun navigateToNoteListFragmentFinished() {
         _isFinished.value = false
-    }
-
-    companion object {
-        const val UNDEFINED_ID = 0L
     }
 }

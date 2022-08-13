@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 data class NoteDbo(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Long = 0,
+    val id: Long = UNDEFINED_ID,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "content")
@@ -18,4 +18,9 @@ data class NoteDbo(
     val createdAt: LocalDateTime,
     @ColumnInfo(name = "modifiedAt")
     val modifiedAt: LocalDateTime,
-)
+) {
+    companion object {
+
+        const val UNDEFINED_ID = 0L
+    }
+}

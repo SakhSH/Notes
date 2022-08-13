@@ -51,8 +51,6 @@ class NoteListFragment : ViewBindingFragment<FragmentNoteListBinding>(
                         ).show()
                     }
                     pressedTime = System.currentTimeMillis()
-
-                    requireActivity().supportFragmentManager.popBackStack()
                 }
             }
         requireActivity().onBackPressedDispatcher.addCallback(

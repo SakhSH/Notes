@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/xl_padding"
     >
 
     <TextView
@@ -13,18 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@android:style/TextAppearance.Material.Title"
-        tools:text="Title"
+        tools:text="@string/title_name"
         />
 
     <TextView
         android:id="@+id/contentLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/l_margin"
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        tools:text="Content"
+        tools:text="@string/content_name"
         />
 
 </LinearLayout>

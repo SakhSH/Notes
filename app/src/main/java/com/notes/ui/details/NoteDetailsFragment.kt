@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
-import com.notes.R
+import androidx.fragment.app.viewModels
 import com.notes.databinding.FragmentNoteDetailsBinding
 import com.notes.di.DependencyManager
 import com.notes.ui._base.ViewBindingFragment
@@ -19,7 +18,8 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var viewModel: NoteDetailsViewModel
+    private val viewModel: NoteDetailsViewModel by viewModels { viewModelFactory }
+
     private var noteItemId: Long = UNDEFINED_ID
     private var screenMode: String = MODE_UNKNOWN
 
@@ -38,7 +38,6 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this, viewModelFactory)[NoteDetailsViewModel::class.java]
         viewBinding?.toolbar?.setNavigationOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
@@ -124,7 +123,7 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
         if (screenMode == MODE_EDIT) {
             noteItemId = args.getLong(NOTE_ITEM_ID, UNDEFINED_ID)
             if (noteItemId == UNDEFINED_ID) {
-                throw RuntimeException("Param shop item id is absent")
+                throw RuntimeException("Param note item id is absent")
             }
         }
     }
@@ -132,7 +131,7 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
     private fun observeViewModel() {
         viewModel.errorInputTitle.observe(viewLifecycleOwner) {
             val message = if (it) {
-                getString(R.string.error_input_title)
+                "Invalid title"
             } else {
                 null
             }
@@ -140,7 +139,7 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
         }
         viewModel.errorInputContent.observe(viewLifecycleOwner) {
             val message = if (it) {
-                getString(R.string.error_input_content)
+                "Invalid content"
             } else {
                 null
             }
@@ -148,7 +147,7 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
         }
         viewModel.isFinished.observe(viewLifecycleOwner) {
             if (it) {
-                viewModel.finishWorkSuccess()
+                viewModel.navigateToNoteListFragmentFinished()
                 requireActivity().supportFragmentManager.popBackStack()
             }
         }

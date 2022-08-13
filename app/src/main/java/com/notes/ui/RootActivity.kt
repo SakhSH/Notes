@@ -17,15 +17,6 @@ class RootActivity : AppCompatActivity(), FragmentNavigator {
         val viewBinding = ActivityRootBinding.inflate(layoutInflater)
         this.viewBinding = viewBinding
         setContentView(viewBinding.root)
-        if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(
-                    viewBinding.container.id,
-                    NoteListFragment()
-                )
-                .commit()
-        }
     }
 
     override fun navigateTo(

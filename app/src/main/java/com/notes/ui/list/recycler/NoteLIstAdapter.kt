@@ -11,7 +11,7 @@ class NoteLIstAdapter @Inject constructor(
     callback: NoteItemDiffCallback,
 ) : ListAdapter<Note, NoteItemViewHolder>(callback) {
 
-    var onNoteItemClickListener: ((Long) -> Unit)? = null
+    var onNoteItemClickListener: ((Long) -> Unit) = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)

@@ -9,13 +9,13 @@ class NoteItemViewHolder(private val binding: ListItemNoteBinding) :
 
     fun bind(
         note: Note,
-        onNoteItemClickListener: ((Long) -> Unit)?,
+        onNoteItemClickListener: ((Long) -> Unit),
     ) {
 
         binding.titleLabel.text = note.title
         binding.contentLabel.text = note.content
         binding.root.setOnClickListener {
-            onNoteItemClickListener?.invoke(note.id)
+            onNoteItemClickListener.invoke(note.id)
         }
     }
 
