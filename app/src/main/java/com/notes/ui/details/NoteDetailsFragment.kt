@@ -8,6 +8,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.notes.databinding.FragmentNoteDetailsBinding
 import com.notes.di.DependencyManager
+import com.notes.domain.models.Note
 import com.notes.ui._base.ViewBindingFragment
 import com.notes.ui._base.ViewModelFactory
 import javax.inject.Inject
@@ -20,7 +21,7 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
 
     private val viewModel: NoteDetailsViewModel by viewModels { viewModelFactory }
 
-    private var noteItemId: Long = UNDEFINED_ID
+    private var noteItemId: Long = Note.UNDEFINED_ID
     private var screenMode: String = MODE_UNKNOWN
 
     override fun onAttach(context: Context) {
@@ -121,8 +122,8 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
             throw RuntimeException("Unknown screen mode $screenMode")
         }
         if (screenMode == MODE_EDIT) {
-            noteItemId = args.getLong(NOTE_ITEM_ID, UNDEFINED_ID)
-            if (noteItemId == UNDEFINED_ID) {
+            noteItemId = args.getLong(NOTE_ITEM_ID, Note.UNDEFINED_ID)
+            if (noteItemId == Note.UNDEFINED_ID) {
                 throw RuntimeException("Param note item id is absent")
             }
         }
@@ -160,7 +161,6 @@ class NoteDetailsFragment : ViewBindingFragment<FragmentNoteDetailsBinding>(
         private const val MODE_EDIT = "mode_edit"
         private const val MODE_ADD = "mode_add"
         private const val MODE_UNKNOWN = ""
-        const val UNDEFINED_ID = 0L
 
         fun newInstanceAddItem(): NoteDetailsFragment {
             return NoteDetailsFragment().apply {

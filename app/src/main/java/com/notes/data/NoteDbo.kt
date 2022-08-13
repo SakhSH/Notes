@@ -3,13 +3,14 @@ package com.notes.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.notes.domain.models.Note
 import java.time.LocalDateTime
 
 @Entity(tableName = "notes")
 data class NoteDbo(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Long = UNDEFINED_ID,
+    val id: Long,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "content")
@@ -18,9 +19,4 @@ data class NoteDbo(
     val createdAt: LocalDateTime,
     @ColumnInfo(name = "modifiedAt")
     val modifiedAt: LocalDateTime,
-) {
-    companion object {
-
-        const val UNDEFINED_ID = 0L
-    }
-}
+)
